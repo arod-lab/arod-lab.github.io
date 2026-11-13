@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John [Last Name] | Data Portfolio</title>
+<meta name="description" content="John [Last Name]. Cost analyst moving into data science: Python, SQL, and machine learning.">
+<!-- Link preview: what shows when you paste your site link into LinkedIn or a text message -->
+<meta property="og:title" content="John [Last Name] | Data Portfolio">
+<meta property="og:description" content="Cost analyst moving into data science: Python, SQL, and machine learning.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://arod-lab.github.io/">
+<!-- Tab icon: a small "J." drawn right here, so no extra image file is needed -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23e9dcc4'/%3E%3Ctext x='30' y='46' font-family='Georgia,serif' font-size='42' text-anchor='middle' fill='%231f1b16'%3EJ%3C/text%3E%3Ccircle cx='47' cy='43' r='4' fill='%23b5562b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== Colors and fonts: change these to restyle the whole page ===== */
+  :root {
+    /* ===== Top and bottom bands: light warm sand ===== */
+    --band: #e9dcc4;            /* band background */
+    --band-text: #1f1b16;       /* text on the band */
+    --band-accent: #8f4220;     /* small labels and photo frame on the band (darker rust so small text is easy to read) */
+    --band-grid: rgba(181, 86, 43, 0.10); /* graph paper lines on the band */
+    --band-btn: #b5562b;        /* main button on the band */
+    --band-btn-text: #f6f1e7;   /* main button text */
+    --band-photo: #d8c7a8;      /* photo placeholder */
+    --band-rule: rgba(31, 27, 22, 0.15); /* thin line above the footer */
+    --bg: #f6f1e7;        /* warm paper */
+    --tint: #efe7d8;      /* shaded paper */
+    --ink: #1f1b16;       /* text */
+    --muted: #6b6257;     /* lighter text */
+    --rule: #d9cfbf;      /* thin lines */
+    --accent: #b5562b;    /* rust */
+    --grid: rgba(181, 86, 43, 0.07);       /* graph paper lines on paper */
+    --grid-size: 28px;                      /* size of each graph paper square */
+    --serif: "Newsreader", Georgia, serif;
+    --sans: "Figtree", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  /* Smooth scrolling, but only for people who have not asked their device to reduce motion */
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  /* Graph paper: two sets of thin lines (across and down) drawn with gradients */
+  body {
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    color: var(--ink); font-family: var(--sans); font-size: 1.05rem; line-height: 1.7;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+  .skip { position: absolute; left: -999px; }
+  .skip:focus { left: 16px; top: 16px; background: var(--bg); padding: 8px 12px; }
+  .mono { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ===== Sand bands (top and bottom) ===== */
+  /* The bands get the same graph paper as the page, in a slightly stronger rust */
+  .top, .bottom {
+    background-color: var(--band);
+    background-image:
+      linear-gradient(var(--band-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--band-grid) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    color: var(--band-text);
+  }
+  header .wrap { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+  .me { display: flex; align-items: baseline; gap: 12px; text-decoration: none; }
+  .logo { font-family: var(--serif); font-size: 1.6rem; line-height: 1; }
+  .logo span { color: var(--band-accent); }
+  nav { display: flex; gap: 24px; }
+  nav a { text-decoration: none; font-family: var(--mono); font-size: 0.8rem; opacity: 0.8; }
+  nav a:hover { opacity: 1; color: var(--band-accent); }
+
+  .hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: center; padding: 50px 28px 90px; }
+  .hero .mono { color: var(--band-accent); }
+  .hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(3.2rem, 7.5vw, 5.6rem); line-height: 1; margin: 16px 0 22px; letter-spacing: -0.02em; }
+  .hero p { opacity: 0.8; font-size: 1.15rem; max-width: 30em; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+  .btn { display: inline-block; padding: 11px 24px; border-radius: 6px; border: 1.5px solid currentColor; text-decoration: none; font-weight: 600; transition: background 0.15s, color 0.15s; }
+  .btn.primary { background: var(--band-btn); border-color: var(--band-btn); color: var(--band-btn-text); }
+  .btn:hover { background: var(--band-text); color: var(--band); border-color: var(--band-text); }
+
+  /* ===== Hero photo with an offset rust frame ===== */
+  .photo { position: relative; width: 100%; max-width: 320px; justify-self: center; isolation: isolate; }
+  .photo::after { content: ""; position: absolute; inset: 14px -14px -14px 14px; border: 1.5px solid var(--band-accent); border-radius: 8px; z-index: -1; }
+  .photo img, .photo .placeholder { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border: 1.5px solid var(--band-text); border-radius: 8px; }
+  .photo .placeholder { background: var(--band-photo); display: grid; place-items: center; font-family: var(--mono); font-size: 0.8rem; opacity: 0.9; }
+
+  /* ===== Sections on paper ===== */
+  section { padding-top: 90px; scroll-margin-top: 20px; }
+  .head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 30px; }
+  .head .mono { color: var(--accent); }
+  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.1; }
+
+  /* "Right now": three columns split by thin rules, no boxes */
+  /* One column per card, so adding or removing a card just works */
+  .now { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; border-top: 1.5px solid var(--ink); }
+  .now div { padding: 22px 24px 8px 0; }
+  .now div + div { border-left: 1px solid var(--rule); padding-left: 24px; }
+  .now h3 { font-family: var(--serif); font-weight: 600; font-size: 1.4rem; line-height: 1.2; }
+  .now .mono { color: var(--accent); }
+  .now p { color: var(--muted); font-size: 0.95rem; margin-top: 10px; }
+
+  /* Journey as a list: a filled dot is done, an open dot is the goal */
+  .legend { list-style: none; border-top: 1.5px solid var(--ink); }
+  .legend li { display: grid; grid-template-columns: 26px 150px 1fr; gap: 14px; padding: 20px 0; border-bottom: 1px solid var(--rule); }
+  .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); margin-top: 9px; }
+  .dot.open { background: transparent; border: 1.5px solid var(--accent); }
+  .dot.none { background: var(--rule); }
+  .legend .mono { color: var(--muted); padding-top: 5px; }
+  .legend h3 { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; line-height: 1.25; }
+  .legend p { color: var(--muted); max-width: 44em; margin-top: 4px; }
+
+  /* ===== Projects as report figures ===== */
+  figure { border: 1.5px solid var(--ink); background: var(--tint); }
+  .shot { aspect-ratio: 16 / 7; width: 100%; object-fit: cover; }
+  .shot.placeholder { display: grid; place-items: center; color: var(--muted); font-family: var(--mono); font-size: 0.8rem; }
+  figcaption { border-top: 1.5px solid var(--ink); background: var(--bg); padding: 10px 14px; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+  figcaption b { color: var(--accent); font-weight: 500; }
+  .project { margin-bottom: 70px; }
+  .project-title { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px; margin: 26px 0 18px; }
+  .project-title:first-child { margin-top: 0; } /* no extra gap when there is no screenshot above the title */
+  .project h3 { font-family: var(--serif); font-weight: 600; font-size: 2.1rem; line-height: 1.1; }
+  .project-title .mono { color: var(--muted); }
+  /* Question, Approach, Result side by side */
+  .qar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .qar > div { border-top: 1.5px solid var(--ink); padding-top: 12px; }
+  .qar h4 { font-family: var(--mono); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .qar p { color: var(--muted); font-size: 0.95rem; }
+  .qar .result { border-top-color: var(--accent); border-top-width: 3px; background: var(--tint); padding: 12px 14px; }
+  .qar .result p { color: var(--ink); }
+  .project .buttons { margin-top: 24px; }
+  .project .btn { padding: 8px 18px; font-size: 0.9rem; }
+  .project .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .project .btn:not(.primary) { color: var(--ink); }
+  .project .btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  /* Skills styled like bits of code */
+  .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .skills code { font-family: var(--mono); font-size: 0.9rem; background: var(--tint); border: 1px solid var(--rule); border-radius: 4px; padding: 4px 12px; }
+
+  /* ===== Sand contact band at the bottom ===== */
+  .bottom { margin-top: 100px; padding: 80px 0 40px; }
+  .bottom h2 { font-size: clamp(2.4rem, 6vw, 4rem); }
+  .bottom .mono { color: var(--band-accent); }
+  .bottom .buttons { margin-top: 28px; }
+  .bottom footer { margin-top: 70px; padding-top: 18px; border-top: 1px solid var(--band-rule); display: flex; justify-content: space-between; opacity: 0.75; }
+
+  /* ===== Phones and small screens ===== */
+  @media (max-width: 820px) {
+    nav { gap: 14px; }
+    .me span { display: none; }
+    .hero { grid-template-columns: 1fr; padding-bottom: 50px; }
+    .photo { order: -1; max-width: 220px; justify-self: start; } /* photo moves above the name on phones */
+    .now { grid-auto-flow: row; } /* cards stack on phones */
+    .qar { grid-template-columns: 1fr; }
+    .now div + div { border-left: 0; border-top: 1px solid var(--rule); padding-left: 0; }
+    .legend li { grid-template-columns: 22px 1fr; }
+    .legend li > div { grid-column: 2; }
+    .bottom footer { flex-direction: column; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ===== SAND TOP BAND: header + hero ===== -->
+<div class="top">
+  <header>
+    <div class="wrap">
+      <a class="me" href="#main">
+        <span class="logo">J<span>.</span></span>
+        <span class="mono">John [Last Name]</span>
+      </a>
+      <nav>
+        <a href="#now">Now</a>
+        <a href="#journey">Journey</a>
+        <!-- When you add a project, put this link back:  <a href="#projects">Projects</a>  -->
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap hero">
+    <div>
+      <span class="mono">Cost Analyst → Data Scientist</span>
+      <h1>John<br>[Last Name]</h1>
+      <p>I audit transportation spending for a school district, and I'm building the Python, SQL, and machine learning skills to turn numbers like these into predictions people can act on.</p>
+      <div class="buttons">
+        <a class="btn primary" href="mailto:you@example.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/your-profile">LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- PHOTO (hidden until you have one).
+         To turn it on: put a file named headshot.jpg next to this file,
+         then delete this whole comment and paste in these three lines:
+
+    <div class="photo">
+      <img src="headshot.jpg" alt="Photo of John [Last Name]">
+    </div>
+    -->
+  </div>
+</div>
+
+<main id="main" class="wrap">
+
+  <!-- ===== RIGHT NOW ===== -->
+  <section id="now">
+    <div class="head"><span class="mono">§ 1</span><h2>Right now</h2></div>
+    <div class="now">
+      <div><h3>[School District]</h3><span class="mono">Cost Analyst, Transportation</span><p>Auditing contractor billing and transportation costs.</p></div>
+      <div><h3>Data Science</h3><span class="mono">Coursework</span><p>Learning Python, SQL, and machine learning. [Program or school name]</p></div>
+    </div>
+  </section>
+
+  <!-- ===== JOURNEY ===== -->
+  <section id="journey">
+    <div class="head"><span class="mono">§ 2</span><h2>How I got here</h2></div>
+    <!-- To add a stop, copy one whole <li> block. Use class "dot" for done, "dot open" for the goal. -->
+    <ul class="legend">
+      <li><span class="dot"></span><span class="mono">[Years]</span>
+        <div><h3>Accounting, [Employer or school]</h3><p>[One or two sentences about your accounting work.]</p></div></li>
+      <li><span class="dot"></span><span class="mono">[Year] to now</span>
+        <div><h3>Cost Analyst, [School District]</h3><p>Audit contractor billing for the transportation department. Found a $2 million invoice error that worked against our contractor and made sure the district paid what it actually owed, because that's what good partners do.</p></div></li>
+      <li><span class="dot"></span><span class="mono">[Year] to now</span>
+        <div><h3>Studying data science</h3><p>Learning Python, SQL, and machine learning. [Program or school name]</p></div></li>
+      <li><span class="dot open"></span><span class="mono">Next</span>
+        <div><h3>Data scientist</h3><p>Looking for a data science role, including at tech companies.</p></div></li>
+    </ul>
+  </section>
+
+  <!-- ===== PROJECTS (hidden until your first project is ready) =====
+       To turn it on: delete the two comment lines (this one and the "end" line below),
+       fill in the brackets, put the Projects link back in the menu at the top,
+       and renumber the § labels so they go in order.
+
+  <section id="projects">
+    <div class="head"><span class="mono">§ 3</span><h2>Projects</h2></div>
+    <article class="project">
+      <figure>
+        <img class="shot" src="[screenshot.png]" alt="[What the screenshot shows]">
+        <figcaption><b>Fig. 1</b> &nbsp;[Project name], [what the screenshot shows]</figcaption>
+      </figure>
+      <div class="project-title">
+        <h3>[Project name]</h3>
+        <span class="mono">[Tools, like Python · pandas · SQL]</span>
+      </div>
+      <div class="qar">
+        <div><h4>Question</h4><p>[What were you trying to find out?]</p></div>
+        <div><h4>Approach</h4><p>[What data and methods did you use?]</p></div>
+        <div class="result"><h4>Result</h4><p>[What did you find?]</p></div>
+      </div>
+      <div class="buttons">
+        <a class="btn primary" href="[link to report or demo]">See the work</a>
+        <a class="btn" href="[link to GitHub repo]">Code</a>
+      </div>
+    </article>
+  </section>
+
+  ===== end of hidden PROJECTS section ===== -->
+
+  <!-- ===== SKILLS: keep only the ones you could talk about in an interview ===== -->
+  <section id="skills">
+    <div class="head"><span class="mono">§ 3</span><h2>Toolkit</h2></div>
+    <div class="skills">
+      <code>Python</code><code>pandas</code><code>SQL</code><code>scikit-learn</code><code>Regression</code><code>Excel</code><code>Data visualization</code><code>HTML/CSS</code>
+    </div>
+  </section>
+</main>
+
+<!-- ===== SAND BOTTOM BAND: contact ===== -->
+<div class="bottom" id="contact">
+  <div class="wrap">
+    <span class="mono">§ 4 · Get in touch</span>
+    <h2>Let's find the signal.</h2>
+    <div class="buttons">
+      <a class="btn primary" href="mailto:you@example.com">Email</a>
+      <a class="btn" href="https://github.com/arod-lab">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/your-profile">LinkedIn</a>
+      <!-- RESUME (hidden until you have one). Put resume.pdf next to this file, then delete
+           this comment and paste in:  <a class="btn" href="resume.pdf">Resume</a>  -->
+    </div>
+    <footer class="mono"><span>John [Last Name]</span><span>[City]</span></footer>
+  </div>
+</div>
+</body>
+</html>
