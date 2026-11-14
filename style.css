@@ -151,6 +151,32 @@ figcaption b { color: var(--accent); font-weight: 500; }
 .page-title { font-family: var(--serif); font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.08; margin-bottom: 10px; }
 .page-tools { color: var(--muted); display: block; margin-bottom: 30px; }
 .project-page .qar { margin-top: 30px; }
+.project-page figure { margin-top: 18px; }
+.project-page figure a { display: block; cursor: zoom-in; } /* click a picture to open it full size */
+
+/* Key numbers: a row of big figures at the top of a project page */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.stat { padding: 18px 16px 18px 0; }
+.stat b { display: block; font-family: var(--serif); font-weight: 600; font-size: 2.1rem; line-height: 1.1; color: var(--accent); }
+.stat span { display: block; color: var(--muted); font-size: 0.85rem; line-height: 1.4; margin-top: 6px; }
+
+/* A new part of the story: small label, then a heading */
+.part { margin-top: 80px; padding-top: 18px; border-top: 1.5px solid var(--ink); }
+.part .mono { color: var(--accent); }
+.part h2 { margin-top: 6px; }
+.sub { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height: 1.2; margin-top: 50px; }
+/* Body text on a project page */
+.prose { max-width: 46em; margin-top: 26px; }
+.steps { max-width: 46em; margin: 14px 0 0 22px; }
+.steps li { margin-top: 6px; }
+
+/* Code samples */
+.code { background: var(--ink); color: var(--bg); font-family: var(--mono); font-size: 0.85rem; line-height: 1.6; padding: 18px 20px; margin-top: 18px; border-radius: 6px; overflow-x: auto; }
+
+/* Results table: label on the left, number on the right */
+.results { border-collapse: collapse; margin-top: 26px; width: 100%; max-width: 560px; border-top: 1.5px solid var(--ink); }
+.results td { padding: 10px 0; border-bottom: 1px solid var(--rule); }
+.results td:last-child { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
 
 /* Extra figures under a project, two per row */
 .more { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; align-items: start; margin-top: 26px; }

@@ -38,43 +38,110 @@
 </header>
 
 <main id="main" class="wrap">
-  <!-- ===== THE PROJECT ===== -->
   <section class="project project-page">
+
+    <!-- ===== TITLE ===== -->
     <a class="back" href="index.html#projects">← All projects</a>
     <h1 class="page-title">Public Utility Payroll and the Overtime Deduction</h1>
     <span class="mono page-tools">Power BI · DAX · Python</span>
 
-    <!-- Main picture -->
-    <figure>
-      <img class="shot" src="images/ladwp-payroll-by-year.png" alt="Power BI dashboard showing total payroll of 13.08 billion dollars, total overtime of 2.34 billion dollars, and a chart of payroll by year from 2017 to 2024 with a 20.4 percent jump in 2023">
-      <figcaption><b>Fig. 1</b> &nbsp;Total payroll by year, 2017 to 2024, with yearly growth</figcaption>
-    </figure>
+    <!-- ===== KEY NUMBERS: the headline results in one row ===== -->
+    <div class="stats">
+      <div class="stat"><b>$13.08bn</b><span>total payroll, 2017 to 2024</span></div>
+      <div class="stat"><b>20.4%</b><span>payroll jump in 2023</span></div>
+      <div class="stat"><b>17.9%</b><span>of payroll is overtime</span></div>
+      <div class="stat"><b>3 in 4</b><span>employees qualify for the overtime deduction</span></div>
+      <div class="stat"><b>$12.8M</b><span>estimated federal tax saved</span></div>
+    </div>
+
+    <!-- ===== QUESTION, APPROACH, RESULT ===== -->
     <div class="qar">
       <div><h4>Question</h4><p>How has payroll at the Los Angeles Department of Water and Power changed since 2017, and who benefits from the new federal overtime deduction?</p></div>
       <div><h4>Approach</h4><p>Connected Power BI to the city's live payroll feed (100K+ records, 2017 to 2024) and wrote DAX measures for year over year growth. Then modeled the overtime deduction for each employee in Python using the 2024 data.</p></div>
       <div class="result"><h4>Result</h4><p>Payroll jumped 20.4% in 2023 while overtime jumped 30.4%. Overtime makes up 17.9% of the $13.08 billion paid over eight years. About 3 in 4 employees would qualify for the deduction, saving an estimated $12.8 million in federal tax.</p></div>
     </div>
-    <p class="note">The deduction estimate assumes single filers with no other income, overtime paid at time and a half, and 2025 tax brackets. Data: City of Los Angeles Controller, public payroll records.</p>
 
-    <!-- Extra pictures, two per row -->
-    <div class="more">
-      <figure>
-        <img class="shot" src="images/ladwp-overtime-growth.png" alt="Area chart comparing yearly growth in payroll and overtime from 2018 to 2024, with overtime growing faster in most years and peaking at 30.4 percent in 2023">
-        <figcaption><b>Fig. 2</b> &nbsp;Overtime growth outpaces payroll growth</figcaption>
-      </figure>
-      <figure>
-        <img class="shot" src="images/ladwp-deduction-chart.png" alt="Bar chart of employees by estimated overtime deduction: 3,375 with no deduction, 3,214 up to 2,500 dollars, and 347 at the full 12,500 dollars">
-        <figcaption><b>Fig. 3</b> &nbsp;Employees by estimated deduction (Python)</figcaption>
-      </figure>
-      <figure>
-        <img class="shot" src="images/ladwp-bargaining-units.png" alt="Table and treemap of payroll by bargaining unit, led by the Operating Maintenance and Service Unit at 4.97 billion dollars, about 38 percent of the total">
-        <figcaption><b>Fig. 4</b> &nbsp;Payroll by bargaining unit</figcaption>
-      </figure>
-      <figure>
-        <img class="shot" src="images/ladwp-data-model.png" alt="Power BI data model with a payroll table linked to a date table and a job class pay grade table">
-        <figcaption><b>Fig. 5</b> &nbsp;The data model behind the report</figcaption>
-      </figure>
+    <!-- ===== PART 1: POWER BI ===== -->
+    <div class="part">
+      <span class="mono">Part 1 · Power BI</span>
+      <h2>What the payroll data shows</h2>
     </div>
+
+    <p class="prose">Payroll grew every year, but 2023 stands out. Total pay reached $2.01 billion, up 20.4% from the year before, the largest increase in the eight years of data.</p>
+    <!-- Each picture is a link, so clicking it opens the full size image -->
+    <figure>
+      <a href="images/ladwp-payroll-by-year.png"><img class="shot" src="images/ladwp-payroll-by-year.png" alt="Power BI dashboard showing total payroll of 13.08 billion dollars, total overtime of 2.34 billion dollars, and a chart of payroll by year from 2017 to 2024 with a 20.4 percent jump in 2023"></a>
+      <figcaption><b>Fig. 1</b> &nbsp;Total payroll by year, 2017 to 2024, with yearly growth</figcaption>
+    </figure>
+
+    <p class="prose">Overtime grew faster than total payroll in six of the seven years. In 2023 payroll rose 20.4% while overtime rose 30.4%. Over the full period, overtime added up to $2.34 billion.</p>
+    <figure>
+      <a href="images/ladwp-overtime-growth.png"><img class="shot" src="images/ladwp-overtime-growth.png" alt="Area chart comparing yearly growth in payroll and overtime from 2018 to 2024, with overtime growing faster in most years and peaking at 30.4 percent in 2023"></a>
+      <figcaption><b>Fig. 2</b> &nbsp;Yearly growth in overtime compared with total payroll</figcaption>
+    </figure>
+
+    <p class="prose">Payroll is concentrated in a few bargaining units. The Operating Maintenance and Service Unit alone accounts for $4.97 billion, about 38% of the total.</p>
+    <figure>
+      <a href="images/ladwp-bargaining-units.png"><img class="shot" src="images/ladwp-bargaining-units.png" alt="Table and treemap of payroll by bargaining unit, led by the Operating Maintenance and Service Unit at 4.97 billion dollars, about 38 percent of the total"></a>
+      <figcaption><b>Fig. 3</b> &nbsp;Payroll by bargaining unit</figcaption>
+    </figure>
+
+    <h3 class="sub">How the report is built</h3>
+    <p class="prose">The report pulls payroll records straight from the City Controller's open data feed, so it can refresh with new data. The payroll table is linked to a date table and a job class table, and the growth figures come from DAX measures like this one:</p>
+<pre class="code"><code>Annual Payroll % Growth =
+DIVIDE(
+    [Total_Pay] - CALCULATE([Total_Pay], DATEADD(DateTable[Date].[Date], -1, YEAR)),
+    CALCULATE([Total_Pay], DATEADD(DateTable[Date].[Date], -1, YEAR))
+)</code></pre>
+    <figure>
+      <a href="images/ladwp-data-model.png"><img class="shot" src="images/ladwp-data-model.png" alt="Power BI data model with a payroll table linked to a date table and a job class pay grade table"></a>
+      <figcaption><b>Fig. 4</b> &nbsp;The data model behind the report</figcaption>
+    </figure>
+
+    <!-- ===== PART 2: PYTHON ===== -->
+    <div class="part">
+      <span class="mono">Part 2 · Python</span>
+      <h2>Who benefits from the overtime deduction?</h2>
+    </div>
+
+    <p class="prose">A 2025 federal law lets workers deduct part of their overtime pay from taxable income. I modeled it for every LADWP employee using their 2024 pay. The rule has three steps:</p>
+    <ol class="steps">
+      <li><b>Only the premium counts.</b> For time and a half, that is one third of overtime pay.</li>
+      <li><b>The deduction is capped</b> at $12,500 for a single filer.</li>
+      <li><b>It shrinks for higher earners:</b> $100 less for every $1,000 of income above $150,000.</li>
+    </ol>
+    <p class="prose">In Python, the rule for one employee looks like this:</p>
+<pre class="code"><code>def deduction(overtime_pay, income):
+    premium = max(overtime_pay, 0) * PREMIUM_SHARE
+    capped = min(premium, MAX_DEDUCTION)
+    # Lose $100 for every $1,000 (or part of $1,000) of income over $150,000
+    income_over = max(income - PHASE_OUT_START, 0)
+    reduction = math.ceil(income_over / 1000) * 100
+    return max(capped - reduction, 0)</code></pre>
+    <p class="prose">A deduction lowers taxable income, not the tax bill itself. So for each employee I calculated federal income tax with and without the deduction, using the 2025 brackets, and took the difference.</p>
+
+    <figure>
+      <a href="images/ladwp-deduction-chart.png"><img class="shot" src="images/ladwp-deduction-chart.png" alt="Bar chart of employees by estimated overtime deduction: 3,375 with no deduction, 3,214 up to 2,500 dollars, and 347 at the full 12,500 dollars"></a>
+      <figcaption><b>Fig. 5</b> &nbsp;Employees by estimated deduction, built in Python</figcaption>
+    </figure>
+
+    <!-- Results table -->
+    <table class="results">
+      <tr><td>Employees in 2024</td><td>13,431</td></tr>
+      <tr><td>Qualify for a deduction</td><td>10,056 (75%)</td></tr>
+      <tr><td>Total deductions</td><td>$53.1 million</td></tr>
+      <tr><td>Employees at the full $12,500</td><td>347</td></tr>
+      <tr><td>Estimated federal tax saved</td><td>$12.8 million</td></tr>
+      <tr><td>Average saved per eligible employee</td><td>$1,273</td></tr>
+    </table>
+    <p class="note">The estimate assumes single filers with no other income, overtime paid at time and a half, and 2025 tax brackets with the standard deduction. Data: City of Los Angeles Controller, public payroll records.</p>
+
+    <h3 class="sub">Checking my own work</h3>
+    <p class="prose">My first version of the deduction model, built in Power BI, used a simpler phase out and reported total deductions as savings. When I rebuilt it in Python against the published rules, the answer changed: more employees qualify than I first found, but the tax they save is much smaller than the deduction total.</p>
+
+    <!-- ===== NEXT ===== -->
+    <h3 class="sub">What I'd do next</h3>
+    <p class="prose">The 2023 overtime jump deserves a closer look. The next step would be to flag job titles whose overtime is unusual compared with their own history, so a payroll team knows where to look first.</p>
 
     <!-- BUTTONS (hidden until the code is on GitHub).
          To turn them on: upload ot_deduction.py to a GitHub repo, then delete this
