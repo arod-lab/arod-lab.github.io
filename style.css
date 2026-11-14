@@ -164,14 +164,24 @@ figcaption b { color: var(--accent); font-weight: 500; }
 .part { margin-top: 80px; padding-top: 18px; border-top: 1.5px solid var(--ink); }
 .part .mono { color: var(--accent); }
 .part h2 { margin-top: 6px; }
-.sub { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; line-height: 1.2; margin-top: 50px; }
+/* Smaller headings inside a part ("How the report is built", "What I'd do next").
+   They use the same font, weight and size as the part headings so every heading matches. */
+.sub { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.1; margin-top: 60px; }
 /* Body text on a project page */
 .prose { max-width: 46em; margin-top: 26px; }
 .steps { max-width: 46em; margin: 14px 0 0 22px; }
 .steps li { margin-top: 6px; }
 
-/* Code samples */
-.code { background: var(--ink); color: var(--bg); font-family: var(--mono); font-size: 0.85rem; line-height: 1.6; padding: 18px 20px; margin-top: 18px; border-radius: 6px; overflow-x: auto; }
+/* Code samples, colored like the dark theme in VS Code.
+   Plain code text is light blue. In the HTML, each colored word is wrapped in a
+   small tag, like <span class="f">max</span>, and the letter picks the color below. */
+.code { background: #1e1e1e; color: #9cdcfe; font-family: var(--mono); font-size: 0.85rem; line-height: 1.6; padding: 18px 20px; margin-top: 18px; border-radius: 6px; overflow-x: auto; }
+.code .k { color: #569cd6; }   /* k = keyword that defines something, like def */
+.code .r { color: #c586c0; }   /* r = return */
+.code .f { color: #dcdcaa; }   /* f = function name */
+.code .s { color: #ce9178; }   /* s = text in quotes (a string) */
+.code .n { color: #b5cea8; }   /* n = number */
+.code .c { color: #6a9955; }   /* c = comment */
 
 /* Results table: label on the left, number on the right */
 .results { border-collapse: collapse; margin-top: 26px; width: 100%; max-width: 560px; border-top: 1.5px solid var(--ink); }
