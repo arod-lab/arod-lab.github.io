@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Predicts Pay and Who Leaves? | John [Last Name]</title>
+<meta name="description" content="A regression and hypothesis testing project in R on employee pay and attrition.">
+<!-- Link preview: what shows when you paste your site link into LinkedIn or a text message -->
+<meta property="og:title" content="What Predicts Pay and Who Leaves? | John [Last Name]">
+<meta property="og:description" content="A regression and hypothesis testing project in R on employee pay and attrition.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://arod-lab.github.io/hr-attrition.html">
+<!-- Tab icon: "ar" with a rust cursor, the same as the logo, drawn right here so no image file is needed -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23e9dcc4'/%3E%3Ctext x='26' y='44' font-family='ui-monospace,Menlo,monospace' font-weight='700' font-size='30' text-anchor='middle' fill='%231f1b16'%3Ear%3C/text%3E%3Crect x='46' y='20' width='10' height='26' fill='%23b5562b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- All the colors, fonts and layout live in style.css, shared by every page -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ===== HEADER: stays at the top of the screen while you scroll ===== -->
+<header>
+  <div class="wrap">
+    <a class="me" href="index.html">
+      <span class="logo" aria-label="ar">ar<span class="cursor"></span></span>
+      <span class="mono">John [Last Name]</span>
+    </a>
+    <nav>
+      <a href="index.html#now">Now</a>
+      <a href="index.html#journey">Journey</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <!-- ===== THE PROJECT ===== -->
+  <section class="project project-page">
+    <a class="back" href="index.html#projects">← All projects</a>
+    <h1 class="page-title">What Predicts Pay and Who Leaves?</h1>
+    <span class="mono page-tools">R · Regression · Hypothesis testing</span>
+
+    <figure>
+      <img class="shot" src="images/hr-regression.png" alt="R output of a linear regression predicting monthly income from age and total working years, with an R squared of 0.5988">
+      <figcaption><b>Fig. 1</b> &nbsp;Regression output in R: monthly income from age and total working years</figcaption>
+    </figure>
+    <div class="qar">
+      <div><h4>Question</h4><p>Do employees who leave a company differ in age from those who stay, and how well do age and experience predict monthly income?</p></div>
+      <div><h4>Approach</h4><p>Explored 1,470 employee records in R with a correlation matrix, compared the ages of leavers and stayers with a t test, and fit two linear regression models for monthly income.</p></div>
+      <div class="result"><h4>Result</h4><p>Employees who left were younger on average (33.6 vs 37.6 years), a difference very unlikely to be chance. Age alone explained 25% of the variation in income. Adding total working years raised that to 60%.</p></div>
+    </div>
+    <p class="note">Bootcamp project. The data is a fictional practice dataset created by IBM data scientists and shared on Kaggle.</p>
+
+  </section>
+</main>
+
+<!-- ===== SAND BOTTOM BAND: contact ===== -->
+<div class="bottom" id="contact">
+  <div class="wrap">
+    <span class="mono">Get in touch</span>
+    <h2>Let's find the signal.</h2>
+    <div class="buttons">
+      <a class="btn primary" href="mailto:you@example.com">Email</a>
+      <a class="btn" href="https://github.com/arod-lab">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/your-profile">LinkedIn</a>
+      <!-- RESUME (hidden until you have one). Put resume.pdf next to this file, then delete
+           this comment and paste in:  <a class="btn" href="resume.pdf">Resume</a>  -->
+    </div>
+    <footer class="mono"><span>John [Last Name]</span><span>[City]</span></footer>
+  </div>
+</div>
+</body>
+</html>

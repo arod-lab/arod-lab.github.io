@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Public Utility Payroll and the Overtime Deduction | John [Last Name]</title>
+<meta name="description" content="How payroll at the Los Angeles Department of Water and Power changed from 2017 to 2024, and who benefits from the new federal overtime deduction.">
+<!-- Link preview: what shows when you paste your site link into LinkedIn or a text message -->
+<meta property="og:title" content="Public Utility Payroll and the Overtime Deduction | John [Last Name]">
+<meta property="og:description" content="How payroll at the Los Angeles Department of Water and Power changed from 2017 to 2024, and who benefits from the new federal overtime deduction.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://arod-lab.github.io/ladwp-payroll.html">
+<!-- Tab icon: "ar" with a rust cursor, the same as the logo, drawn right here so no image file is needed -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23e9dcc4'/%3E%3Ctext x='26' y='44' font-family='ui-monospace,Menlo,monospace' font-weight='700' font-size='30' text-anchor='middle' fill='%231f1b16'%3Ear%3C/text%3E%3Crect x='46' y='20' width='10' height='26' fill='%23b5562b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- All the colors, fonts and layout live in style.css, shared by every page -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ===== HEADER: stays at the top of the screen while you scroll ===== -->
+<header>
+  <div class="wrap">
+    <a class="me" href="index.html">
+      <span class="logo" aria-label="ar">ar<span class="cursor"></span></span>
+      <span class="mono">John [Last Name]</span>
+    </a>
+    <nav>
+      <a href="index.html#now">Now</a>
+      <a href="index.html#journey">Journey</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <!-- ===== THE PROJECT ===== -->
+  <section class="project project-page">
+    <a class="back" href="index.html#projects">← All projects</a>
+    <h1 class="page-title">Public Utility Payroll and the Overtime Deduction</h1>
+    <span class="mono page-tools">Power BI · DAX · Python</span>
+
+    <!-- Main picture -->
+    <figure>
+      <img class="shot" src="images/ladwp-payroll-by-year.png" alt="Power BI dashboard showing total payroll of 13.08 billion dollars, total overtime of 2.34 billion dollars, and a chart of payroll by year from 2017 to 2024 with a 20.4 percent jump in 2023">
+      <figcaption><b>Fig. 1</b> &nbsp;Total payroll by year, 2017 to 2024, with yearly growth</figcaption>
+    </figure>
+    <div class="qar">
+      <div><h4>Question</h4><p>How has payroll at the Los Angeles Department of Water and Power changed since 2017, and who benefits from the new federal overtime deduction?</p></div>
+      <div><h4>Approach</h4><p>Connected Power BI to the city's live payroll feed (100K+ records, 2017 to 2024) and wrote DAX measures for year over year growth. Then modeled the overtime deduction for each employee in Python using the 2024 data.</p></div>
+      <div class="result"><h4>Result</h4><p>Payroll jumped 20.4% in 2023 while overtime jumped 30.4%. Overtime makes up 17.9% of the $13.08 billion paid over eight years. About 3 in 4 employees would qualify for the deduction, saving an estimated $12.8 million in federal tax.</p></div>
+    </div>
+    <p class="note">The deduction estimate assumes single filers with no other income, overtime paid at time and a half, and 2025 tax brackets. Data: City of Los Angeles Controller, public payroll records.</p>
+
+    <!-- Extra pictures, two per row -->
+    <div class="more">
+      <figure>
+        <img class="shot" src="images/ladwp-overtime-growth.png" alt="Area chart comparing yearly growth in payroll and overtime from 2018 to 2024, with overtime growing faster in most years and peaking at 30.4 percent in 2023">
+        <figcaption><b>Fig. 2</b> &nbsp;Overtime growth outpaces payroll growth</figcaption>
+      </figure>
+      <figure>
+        <img class="shot" src="images/ladwp-deduction-chart.png" alt="Bar chart of employees by estimated overtime deduction: 3,375 with no deduction, 3,214 up to 2,500 dollars, and 347 at the full 12,500 dollars">
+        <figcaption><b>Fig. 3</b> &nbsp;Employees by estimated deduction (Python)</figcaption>
+      </figure>
+      <figure>
+        <img class="shot" src="images/ladwp-bargaining-units.png" alt="Table and treemap of payroll by bargaining unit, led by the Operating Maintenance and Service Unit at 4.97 billion dollars, about 38 percent of the total">
+        <figcaption><b>Fig. 4</b> &nbsp;Payroll by bargaining unit</figcaption>
+      </figure>
+      <figure>
+        <img class="shot" src="images/ladwp-data-model.png" alt="Power BI data model with a payroll table linked to a date table and a job class pay grade table">
+        <figcaption><b>Fig. 5</b> &nbsp;The data model behind the report</figcaption>
+      </figure>
+    </div>
+
+    <!-- BUTTONS (hidden until the code is on GitHub).
+         To turn them on: upload ot_deduction.py to a GitHub repo, then delete this
+         comment and paste in the lines below with your real link:
+
+    <div class="buttons">
+      <a class="btn primary" href="[link to ot_deduction.py on GitHub]">Code</a>
+    </div>
+    -->
+
+  </section>
+</main>
+
+<!-- ===== SAND BOTTOM BAND: contact ===== -->
+<div class="bottom" id="contact">
+  <div class="wrap">
+    <span class="mono">Get in touch</span>
+    <h2>Let's find the signal.</h2>
+    <div class="buttons">
+      <a class="btn primary" href="mailto:you@example.com">Email</a>
+      <a class="btn" href="https://github.com/arod-lab">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/your-profile">LinkedIn</a>
+      <!-- RESUME (hidden until you have one). Put resume.pdf next to this file, then delete
+           this comment and paste in:  <a class="btn" href="resume.pdf">Resume</a>  -->
+    </div>
+    <footer class="mono"><span>John [Last Name]</span><span>[City]</span></footer>
+  </div>
+</div>
+</body>
+</html>
