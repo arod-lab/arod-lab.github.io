@@ -38,22 +38,124 @@
 </header>
 
 <main id="main" class="wrap">
-  <!-- ===== THE PROJECT ===== -->
   <section class="project project-page">
+
+    <!-- ===== TITLE ===== -->
     <a class="back" href="index.html#projects">← All projects</a>
     <h1 class="page-title">What Predicts Pay and Who Leaves?</h1>
     <span class="mono page-tools">R · Regression · Hypothesis testing</span>
 
-    <figure>
-      <img class="shot" src="images/hr-regression.png" alt="R output of a linear regression predicting monthly income from age and total working years, with an R squared of 0.5988">
-      <figcaption><b>Fig. 1</b> &nbsp;Regression output in R: monthly income from age and total working years</figcaption>
-    </figure>
+    <!-- ===== KEY NUMBERS: the headline results in one row ===== -->
+    <div class="stats">
+      <div class="stat"><b>1,470</b><span>employee records</span></div>
+      <div class="stat"><b>0.77</b><span>correlation between working years and income</span></div>
+      <div class="stat"><b>33.6 vs 37.6</b><span>average age of employees who left vs stayed</span></div>
+      <div class="stat"><b>25% to 60%</b><span>of income variation explained after adding working years</span></div>
+    </div>
+
+    <!-- ===== QUESTION, APPROACH, RESULT ===== -->
     <div class="qar">
       <div><h4>Question</h4><p>Do employees who leave a company differ in age from those who stay, and how well do age and experience predict monthly income?</p></div>
       <div><h4>Approach</h4><p>Explored 1,470 employee records in R with a correlation matrix, compared the ages of leavers and stayers with a t test, and fit two linear regression models for monthly income.</p></div>
       <div class="result"><h4>Result</h4><p>Employees who left were younger on average (33.6 vs 37.6 years), a difference very unlikely to be chance. Age alone explained 25% of the variation in income. Adding total working years raised that to 60%.</p></div>
     </div>
-    <p class="note">Bootcamp project. The data is a fictional practice dataset created by IBM data scientists and shared on Kaggle.</p>
+
+    <!-- ===== PART 1: EXPLORE ===== -->
+    <div class="part">
+      <span class="mono">Part 1 · Explore</span>
+      <h2>Which numbers move together?</h2>
+    </div>
+
+    <p class="prose">I started with a correlation matrix of ten numeric columns. A correlation runs from -1 to 1, and the closer it is to 1, the more two columns rise together.</p>
+<!-- The <span> tags color the code. The letters (f, s, n and so on) are explained in style.css -->
+<pre class="code"><code><span class="f">cor</span>(hrdata[, <span class="f">c</span>(<span class="s">"Age"</span>, <span class="s">"DailyRate"</span>, <span class="s">"DistanceFromHome"</span>, <span class="s">"Education"</span>, <span class="s">"HourlyRate"</span>,
+               <span class="s">"MonthlyIncome"</span>, <span class="s">"MonthlyRate"</span>, <span class="s">"NumCompaniesWorked"</span>,
+               <span class="s">"TotalWorkingYears"</span>, <span class="s">"TrainingTimesLastYear"</span>)])</code></pre>
+    <!-- Each picture is a link, so clicking it opens the full size image -->
+    <figure>
+      <a href="images/hr-correlation.png"><img class="shot" src="images/hr-correlation.png" alt="R output of a correlation matrix with three values circled: 0.50 between age and monthly income, 0.68 between age and total working years, and 0.77 between total working years and monthly income"></a>
+      <figcaption><b>Fig. 1</b> &nbsp;Correlation matrix, with the three strongest pairs circled</figcaption>
+    </figure>
+    <p class="prose">Three pairs stood out. Total working years and monthly income had the strongest link (0.77), followed by age and total working years (0.68), then age and monthly income (0.50). Most other pairs were close to zero.</p>
+
+    <p class="prose">A scatterplot matrix shows the same relationships as pictures. Income climbs with working years, and working years can never be more than age allows, which gives that plot its triangle shape.</p>
+<pre class="code"><code><span class="f">pairs</span>(~MonthlyIncome+Age+TotalWorkingYears+Education,
+      data = hrdata,
+      main = <span class="s">"Scatterplot Matrix"</span>)</code></pre>
+    <figure>
+      <a href="images/hr-scatter.png"><img class="shot" src="images/hr-scatter.png" alt="Scatterplot matrix of monthly income, age, total working years and education"></a>
+      <figcaption><b>Fig. 2</b> &nbsp;Scatterplot matrix of income, age, working years and education</figcaption>
+    </figure>
+
+    <!-- ===== PART 2: TEST ===== -->
+    <div class="part">
+      <span class="mono">Part 2 · Test</span>
+      <h2>Do employees who leave differ in age?</h2>
+    </div>
+
+    <p class="prose">Of the 1,470 employees, 237 left the company (16%). A boxplot of age for each group suggests the leavers skew younger.</p>
+<pre class="code"><code><span class="f">boxplot</span>(Age~Attrition, data = hrdata,
+        main = <span class="s">"Age of employees who left vs stayed"</span>,
+        xlab = <span class="s">"Attrition"</span>, ylab = <span class="s">"Age"</span>,
+        col = <span class="f">c</span>(<span class="s">"brown"</span>, <span class="s">"skyblue"</span>))</code></pre>
+    <figure>
+      <a href="images/hr-boxplot.png"><img class="shot" src="images/hr-boxplot.png" alt="Boxplot of age by attrition. Employees who stayed have a median age near 36, and employees who left have a median age near 32"></a>
+      <figcaption><b>Fig. 3</b> &nbsp;Age of employees who stayed (No) and who left (Yes)</figcaption>
+    </figure>
+
+    <p class="prose">A picture can mislead, so I tested it. A t test asks whether a gap between two averages is bigger than chance alone would produce.</p>
+<pre class="code"><code>Yes_Age &lt;- hrdata[(hrdata$Attrition == <span class="s">"Yes"</span>), <span class="s">'Age'</span>]
+No_Age &lt;- hrdata[(hrdata$Attrition == <span class="s">"No"</span>), <span class="s">'Age'</span>]
+<span class="f">t.test</span>(Yes_Age, No_Age)</code></pre>
+    <figure>
+      <a href="images/hr-ttest.png"><img class="shot" src="images/hr-ttest.png" alt="R output of a Welch two sample t test comparing the ages of employees who left and stayed, with means of 33.6 and 37.6 and a p value of 1.38e-08"></a>
+      <figcaption><b>Fig. 4</b> &nbsp;t test output: average age of leavers (x) and stayers (y)</figcaption>
+    </figure>
+    <p class="prose">Employees who left averaged 33.6 years old, and those who stayed averaged 37.6. The p value is far below 0.05, so a gap this size is very unlikely to be chance. One limit: attrition here means leaving for any reason. The data does not say why someone left.</p>
+
+    <!-- ===== PART 3: MODEL ===== -->
+    <div class="part">
+      <span class="mono">Part 3 · Model</span>
+      <h2>How well do age and experience predict income?</h2>
+    </div>
+
+    <p class="prose">The first model predicts monthly income from age alone.</p>
+<pre class="code"><code>Model1 = <span class="f">lm</span>(MonthlyIncome ~ Age, data = hrdata)
+<span class="f">summary</span>(Model1)</code></pre>
+    <figure>
+      <a href="images/hr-model1.png"><img class="shot" src="images/hr-model1.png" alt="R regression output for monthly income predicted by age, with a coefficient of 256.57 for age and an R squared of 0.2479"></a>
+      <figcaption><b>Fig. 5</b> &nbsp;Model 1: monthly income from age</figcaption>
+    </figure>
+    <p class="prose">Each extra year of age goes with about $257 more in monthly income, and age explains 25% of the variation in income.</p>
+
+    <p class="prose">The second model adds total working years.</p>
+<pre class="code"><code>Model2 = <span class="f">lm</span>(MonthlyIncome ~ Age + TotalWorkingYears, data = hrdata)
+<span class="f">summary</span>(Model2)</code></pre>
+    <figure>
+      <a href="images/hr-model2.png"><img class="shot" src="images/hr-model2.png" alt="R regression output for monthly income predicted by age and total working years, with a coefficient of 489.13 for total working years, negative 26.87 for age, and an R squared of 0.5988"></a>
+      <figcaption><b>Fig. 6</b> &nbsp;Model 2: monthly income from age and total working years</figcaption>
+    </figure>
+    <p class="prose">Now the model explains 60% of the variation. Each working year goes with about $489 more per month, while the effect of age shrinks to almost nothing and turns slightly negative. In this data, experience predicts pay, and age mostly stood in for experience in the first model.</p>
+
+    <!-- Results table -->
+    <table class="results">
+      <tr><td>Employees</td><td>1,470</td></tr>
+      <tr><td>Left the company</td><td>237 (16%)</td></tr>
+      <tr><td>Average age, left</td><td>33.6</td></tr>
+      <tr><td>Average age, stayed</td><td>37.6</td></tr>
+      <tr><td>Income variation explained, age only</td><td>25%</td></tr>
+      <tr><td>Income variation explained, age and working years</td><td>60%</td></tr>
+    </table>
+    <p class="note">Bootcamp project. The data is a fictional practice dataset created by IBM data scientists and shared on Kaggle, so the results show the method, not facts about a real workforce.</p>
+
+    <!-- ===== NEXT ===== -->
+    <h3 class="sub">What I'd do next</h3>
+    <p class="prose">Predict which employees are likely to leave with a logistic regression, and check the predictions with a confusion matrix.</p>
+
+    <!-- BUTTON: opens this project's code and README on GitHub -->
+    <div class="buttons">
+      <a class="btn primary" href="https://github.com/arod-lab/hr-attrition">See the code on GitHub</a>
+    </div>
 
   </section>
 </main>

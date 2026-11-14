@@ -88,10 +88,11 @@
 
     <h3 class="sub">How the report is built</h3>
     <p class="prose">The report pulls payroll records straight from the City Controller's open data feed, so it can refresh with new data. The payroll table is linked to a date table and a job class table, and the growth figures come from DAX measures like this one:</p>
+<!-- The <span> tags color the code. The letters (f, n, k and so on) are explained in style.css -->
 <pre class="code"><code>Annual Payroll % Growth =
-DIVIDE(
-    [Total_Pay] - CALCULATE([Total_Pay], DATEADD(DateTable[Date].[Date], -1, YEAR)),
-    CALCULATE([Total_Pay], DATEADD(DateTable[Date].[Date], -1, YEAR))
+<span class="f">DIVIDE</span>(
+    [Total_Pay] - <span class="f">CALCULATE</span>([Total_Pay], <span class="f">DATEADD</span>(DateTable[Date].[Date], <span class="n">-1</span>, <span class="k">YEAR</span>)),
+    <span class="f">CALCULATE</span>([Total_Pay], <span class="f">DATEADD</span>(DateTable[Date].[Date], <span class="n">-1</span>, <span class="k">YEAR</span>))
 )</code></pre>
     <figure>
       <a href="images/ladwp-data-model.png"><img class="shot" src="images/ladwp-data-model.png" alt="Power BI data model with a payroll table linked to a date table and a job class pay grade table"></a>
@@ -111,13 +112,13 @@ DIVIDE(
       <li><b>It shrinks for higher earners:</b> $100 less for every $1,000 of income above $150,000.</li>
     </ol>
     <p class="prose">In Python, the rule for one employee looks like this:</p>
-<pre class="code"><code>def deduction(overtime_pay, income):
-    premium = max(overtime_pay, 0) * PREMIUM_SHARE
-    capped = min(premium, MAX_DEDUCTION)
-    # Lose $100 for every $1,000 (or part of $1,000) of income over $150,000
-    income_over = max(income - PHASE_OUT_START, 0)
-    reduction = math.ceil(income_over / 1000) * 100
-    return max(capped - reduction, 0)</code></pre>
+<pre class="code"><code><span class="k">def</span> <span class="f">deduction</span>(overtime_pay, income):
+    premium = <span class="f">max</span>(overtime_pay, <span class="n">0</span>) * PREMIUM_SHARE
+    capped = <span class="f">min</span>(premium, MAX_DEDUCTION)
+    <span class="c"># Lose $100 for every $1,000 (or part of $1,000) of income over $150,000</span>
+    income_over = <span class="f">max</span>(income - PHASE_OUT_START, <span class="n">0</span>)
+    reduction = math.<span class="f">ceil</span>(income_over / <span class="n">1000</span>) * <span class="n">100</span>
+    <span class="r">return</span> <span class="f">max</span>(capped - reduction, <span class="n">0</span>)</code></pre>
     <p class="prose">A deduction lowers taxable income, not the tax bill itself. So for each employee I calculated federal income tax with and without the deduction, using the 2025 brackets, and took the difference.</p>
 
     <figure>
@@ -143,14 +144,10 @@ DIVIDE(
     <h3 class="sub">What I'd do next</h3>
     <p class="prose">The 2023 overtime jump deserves a closer look. The next step would be to flag job titles whose overtime is unusual compared with their own history, so a payroll team knows where to look first.</p>
 
-    <!-- BUTTONS (hidden until the code is on GitHub).
-         To turn them on: upload ot_deduction.py to a GitHub repo, then delete this
-         comment and paste in the lines below with your real link:
-
+    <!-- BUTTON: opens this project's code and README on GitHub -->
     <div class="buttons">
-      <a class="btn primary" href="[link to ot_deduction.py on GitHub]">Code</a>
+      <a class="btn primary" href="https://github.com/arod-lab/ladwp-payroll">See the code on GitHub</a>
     </div>
-    -->
 
   </section>
 </main>
